@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心屿 · 摆位调整器</title>
+<style>
+  :root{
+    --ink:#3f3a33; --ink-2:#6d6558; --line:#ddd6c8;
+    --paper:#fbf8f1; --paper-2:#f3eede;
+    --accent:#c98a5a; --accent-2:#a9703f;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; height:100%; overflow:hidden; }
+  body{
+    font:13px/1.6 "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    color:var(--ink); background:#1d1c1a;
+    display:flex;
+  }
+
+  /* ---------- 舞台 ---------- */
+  #stageWrap{ position:relative; flex:1; overflow:hidden; background:#2a2a28; }
+  #stage{
+    position:absolute; inset:0;
+    overflow:hidden;
+    cursor:default;
+    touch-action:none;
+  }
+  #bgLayer{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    pointer-events:none;
+    user-select:none;
+  }
+  #bgLayer.dim{ filter:brightness(.99) contrast(1.04) saturate(.9); }
+
+  .el{
+    position:absolute;
+    left:var(--x); top:var(--y);
+    height:var(--h);
+    width:auto;
+    transform:translate(-50%,-100%) scaleX(var(--flip,1));
+    transform-origin:50% 100%;
+    cursor:grab;
+    pointer-events:auto;
+    touch-action:none;
+    z-index:var(--z);
+    will-change:left, top;
+  }
+  .el:hover{ filter:drop-shadow(0 0 0 1px rgba(201,138,90,.9)); }
+  .el.sel{ outline:1px dashed var(--accent); outline-offset:3px; }
+  .el.dragging{ cursor:grabbing; }
+  .el img{ display:block; height:100%; width:auto; pointer-events:none; }
+  .el .tag{
+    position:absolute; left:50%; top:-20px; transform:translateX(-50%) scaleX(var(--unflip,1));
+    font-size:11px; line-height:16px; padding:0 6px; border-radius:4px;
+    background:rgba(30,28,25,.78); color:#fff; white-space:nowrap;
+    opacity:0; transition:opacity .15s; pointer-events:none;
+  }
+  .el:hover .tag, .el.sel .tag{ opacity:1; }
+
+  /* ---------- 侧栏 ---------- */
+  aside{
+    width:302px; flex:none; height:100%;
+    background:var(--paper); border-left:1px solid #2f2c27;
+    display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  aside header{
+    padding:14px 16px 10px; border-bottom:1px solid var(--line);
+  }
+  aside h1{ margin:0 0 2px; font-size:15px; letter-spacing:.04em; }
+  aside header p{ margin:0; font-size:11px; color:var(--ink-2); }
+  .body{ flex:1; overflow-y:auto; padding:12px 16px 24px; }
+  section{ margin-bottom:20px; }
+  section > h2{
+    margin:0 0 8px; font-size:11px; font-weight:600; letter-spacing:.12em;
+    color:var(--ink-2); text-transform:uppercase;
+  }
+
+  .row{ display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+  .row label{ width:52px; flex:none; font-size:12px; color:var(--ink-2); }
+  .row input[type=number]{
+    width:64px; padding:3px 6px; font:inherit; font-size:12px;
+    border:1px solid var(--line); border-radius:5px; background:#fff; color:var(--ink);
+  }
+  .row input[type=number]:focus{ outline:2px solid rgba(201,138,90,.35); border-color:var(--accent); }
+  .row .unit{ font-size:11px; color:#a39b8b; }
+
+  .slider{ margin-bottom:10px; }
+  .slider .top{ display:flex; justify-content:space-between; font-size:12px; margin-bottom:2px; }
+  .slider .top span:last-child{ color:var(--accent-2); font-variant-numeric:tabular-nums; }
+  input[type=range]{
+    width:100%; height:16px; appearance:none; background:transparent; margin:0;
+  }
+  input[type=range]::-webkit-slider-runnable-track{
+    height:3px; border-radius:2px; background:#e2dbcb;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    appearance:none; width:13px; height:13px; margin-top:-5px; border-radius:50%;
+    background:var(--accent); border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.2);
+    cursor:pointer;
+  }
+
+  .seg{ display:flex; gap:6px; margin-bottom:10px; }
+  .seg button{
+    flex:1; padding:6px 0; font:inherit; font-size:12px;
+    border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink-2);
+    cursor:pointer;
+  }
+  .seg button.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+  .list{ display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .list button{
+    display:flex; align-items:center; gap:6px;
+    padding:5px 8px; font:inherit; font-size:12px; text-align:left;
+    border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink-2);
+    cursor:pointer; overflow:hidden;
+  }
+  .list button.on{ border-color:var(--accent); background:#fdf3e8; color:var(--accent-2); }
+  .list button i{
+    width:6px; height:6px; border-radius:50%; background:#cdc4b2; flex:none;
+  }
+  .list button.on i{ background:var(--accent); }
+
+  textarea{
+    width:100%; height:150px; padding:8px; font:11px/1.5 ui-monospace,Menlo,Consolas,monospace;
+    border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink);
+    resize:vertical;
+  }
+
+  .btns{ display:flex; gap:8px; padding:10px 16px; border-top:1px solid var(--line); background:var(--paper-2); }
+  .btns button{
+    flex:1; padding:8px 0; font:inherit; font-size:12.5px; border-radius:7px; cursor:pointer;
+    border:1px solid var(--line); background:#fff; color:var(--ink);
+  }
+  .btns button.primary{ background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+  .btns button:active{ transform:translateY(1px); }
+
+  .hint{ font-size:11px; color:#a39b8b; line-height:1.7; margin-top:6px; }
+  kbd{
+    display:inline-block; padding:0 4px; font:11px/16px ui-monospace,monospace;
+    border:1px solid var(--line); border-bottom-width:2px; border-radius:3px;
+    background:#fff; color:var(--ink-2);
+  }
+
+  /* 导出弹层 */
+  #modal{
+    position:fixed; inset:0; background:rgba(28,26,23,.62);
+    display:none; align-items:center; justify-content:center; z-index:99;
+  }
+  #modal.on{ display:flex; }
+  #modal .card{
+    width:min(680px,88vw); background:var(--paper); border-radius:12px;
+    padding:18px 20px; box-shadow:0 18px 50px rgba(0,0,0,.3);
+  }
+  #modal h3{ margin:0 0 10px; font-size:14px; }
+  #modal .btns{ border:0; padding:10px 0 0; background:none; }
+</style>
+</head>
+<body>
+
+<div id="stageWrap">
+  <div id="stage">
+    <img id="bgLayer" src="assets/scenes/web/scene-sunny-path.jpg" alt="">
+  </div>
+</div>
+
+<aside>
+  <header>
+    <h1>摆位调整器</h1>
+    <p>拖动素材 · 滚轮缩放 · 方向键微调</p>
+    <p style="margin-top:5px;color:#a9703f">这个预览区比正式站窄（右侧被侧栏占掉了）。搬到全屏时，同样的百分比会让两侧留白更多。</p>
+  </header>
+
+  <div class="body">
+
+    <section>
+      <h2>选中元素</h2>
+      <div class="list" id="picker"></div>
+      <div class="hint" id="selName">未选中，点一下画面里的素材</div>
+    </section>
+
+    <section id="numBox" style="display:none">
+      <h2>坐标</h2>
+      <div class="row">
+        <label>横向 X</label>
+        <input type="number" id="inX" step="0.5" min="0" max="100"><span class="unit">%</span>
+      </div>
+      <div class="row">
+        <label>纵向 Y</label>
+        <input type="number" id="inY" step="0.5" min="0" max="100"><span class="unit">% 脚底</span>
+      </div>
+      <div class="row">
+        <label>高度 H</label>
+        <input type="number" id="inH" step="0.5" min="1" max="120"><span class="unit">% 视口高</span>
+      </div>
+      <div class="row">
+        <label>左右翻转</label>
+        <button id="btnFlip" style="flex:1;padding:4px;border:1px solid var(--line);border-radius:5px;background:#fff;cursor:pointer;font:inherit;font-size:12px">翻转</button>
+        <button id="btnReset" style="flex:1;padding:4px;border:1px solid var(--line);border-radius:5px;background:#fff;cursor:pointer;font:inherit;font-size:12px">复位</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>素材整体色调</h2>
+      <div class="slider">
+        <div class="top"><span>亮度</span><span id="vBri">1.00</span></div>
+        <input type="range" id="rBri" min="0.85" max="1.35" step="0.01" value="1.00">
+      </div>
+      <div class="slider">
+        <div class="top"><span>对比（越低越融进背景）</span><span id="vCon">1.00</span></div>
+        <input type="range" id="rCon" min="0.60" max="1.15" step="0.01" value="1.00">
+      </div>
+      <div class="slider">
+        <div class="top"><span>饱和（越低越像水彩）</span><span id="vSat">1.00</span></div>
+        <input type="range" id="rSat" min="0.40" max="1.15" step="0.01" value="1.00">
+      </div>
+      <div class="slider">
+        <div class="top"><span>雾（往背景色里掺）</span><span id="vFog">0</span></div>
+        <input type="range" id="rFog" min="0" max="0.30" step="0.01" value="0">
+      </div>
+      <div class="seg">
+        <button data-preset="0">原样</button>
+        <button data-preset="1">轻融合</button>
+        <button data-preset="2">强融合</button>
+      </div>
+      <div class="hint">这套值会导出成 CSS <code>filter</code>，正式站不用重做图。</div>
+    </section>
+
+    <section>
+      <h2>背景</h2>
+      <div class="seg">
+        <button data-bg="assets/scenes/web/scene-sunny-path.jpg" class="on">石头路（在用）</button>
+        <button data-bg="assets/scenes/web/scene-sunny-wide.jpg">干净</button>
+        <button data-bg="assets/scenes/web/scene-sunny.jpg">原始</button>
+      </div>
+      <div class="hint">默认这张就是正式站现在用的：左侧那条石子路保留了。「干净」是把它修掉的版本，「原始」边缘还带着两张画上去的树。</div>
+    </section>
+
+  </div>
+
+  <div class="btns">
+    <button id="btnUndo">撤销</button>
+    <button class="primary" id="btnExport">导出坐标</button>
+  </div>
+</aside>
+
+<div id="modal">
+  <div class="card">
+    <h3>复制这段贴给我（或直接存到浏览器）</h3>
+    <div class="hint" id="saveNote" style="margin:0 0 8px;color:#8a6a4a"></div>
+    <textarea id="out" spellcheck="false"></textarea>
+    <div class="btns">
+      <button id="btnCopy">复制</button>
+      <button id="btnSave">存到浏览器</button>
+      <button class="primary" id="btnClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  // 与 main.css 当前值一致
+  var DEFAULT = [
+    { id:'tree-l',  label:'树·左',  src:'assets/decor/tree-a-t.webp', x:57.7, y:59.9, h:53.1, flip:1  },
+    { id:'tree-r',  label:'树·右',  src:'assets/decor/tree-a-t.webp', x:85.7, y:69.3, h:57.1, flip:-1 },
+    { id:'cabin',   label:'小木屋', src:'assets/items/sprites/item-cabin-t.webp', x:67.6, y:68.2, h:45.4, flip:1 },
+    { id:'board',   label:'公告板', src:'assets/items/sprites/item-board-t.webp',   x:37.7, y:62.7, h:24.5, flip:-1 },
+    { id:'scope',   label:'观测台', src:'assets/items/sprites/item-scope-t.webp', x:19.5, y:68, h:17,   flip:1 },
+    { id:'plant',   label:'盆栽',   src:'assets/items/sprites/item-plant-t.webp',   x:72.6, y:71.8, h:12,   flip:1 },
+    { id:'mailbox', label:'信箱',   src:'assets/items/sprites/item-mailbox-t.webp', x:51.6, y:63.2, h:18.5, flip:1 },
+    { id:'bush-a',  label:'花丛 A', src:'assets/decor/bush-a-t.webp', x:26,   y:60.1, h:20.7, flip:1  },
+    { id:'bush-b',  label:'花丛 B', src:'assets/decor/bush-a-t.webp', x:31.3, y:67.4, h:13.7, flip:-1 },
+    { id:'bush-c',  label:'花丛 C', src:'assets/decor/bush-a-t.webp', x:39.1, y:52.6, h:27.6, flip:-1 }
+  ];
+
+  var SAVE_KEY = 'xinyu.tune.v1';
+  var items = load() || JSON.parse(JSON.stringify(DEFAULT));
+  var nodes = {};
+  var sel = null;
+  var history = [];
+
+  var stage = document.getElementById('stage');
+  var picker = document.getElementById('picker');
+  var selName = document.getElementById('selName');
+  var numBox = document.getElementById('numBox');
+
+  // ---------- 构建 ----------
+  items.forEach(function(d){
+    var el = document.createElement('div');
+    el.className = 'el';
+    el.dataset.id = d.id;
+    var img = document.createElement('img');
+    img.src = d.src;
+    img.alt = d.label;
+    img.draggable = false;
+    var tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = d.label;
+    el.appendChild(img); el.appendChild(tag);
+    stage.appendChild(el);
+    nodes[d.id] = el;
+    el.addEventListener('pointerdown', onDown);
+  });
+
+  function paint(){
+    items.forEach(function(d){
+      var el = nodes[d.id];
+      el.style.setProperty('--x', d.x + '%');
+      el.style.setProperty('--y', d.y + '%');
+      el.style.setProperty('--h', d.h + '%');
+      el.style.setProperty('--z', Math.min(99, Math.round(d.y)));
+      el.style.setProperty('--flip', d.flip);
+      el.style.setProperty('--unflip', d.flip < 0 ? -1 : 1);
+    });
+    syncNum();
+  }
+
+  function buildPicker(){
+    picker.innerHTML = '';
+    items.forEach(function(d){
+      var b = document.createElement('button');
+      b.dataset.id = d.id;
+      b.innerHTML = '<i></i>' + d.label;
+      if (sel === d.id) b.classList.add('on');
+      b.onclick = function(e){ e.stopPropagation(); select(d.id); };
+      picker.appendChild(b);
+    });
+  }
+
+  function select(id){
+    sel = id;
+    Object.keys(nodes).forEach(function(k){ nodes[k].classList.toggle('sel', k === id); });
+    Array.prototype.forEach.call(picker.children, function(b){
+      b.classList.toggle('on', b.dataset.id === id);
+    });
+    if (!id){ numBox.style.display = 'none'; selName.textContent = '未选中，点一下画面里的素材'; return; }
+    var d = byId(id);
+    numBox.style.display = '';
+    selName.textContent = d.label + ' · 拖它移动，滚轮缩放';
+    syncNum();
+  }
+
+  function byId(id){ return items.filter(function(d){ return d.id === id; })[0]; }
+
+  function syncNum(){
+    if (!sel) return;
+    var d = byId(sel);
+    document.getElementById('inX').value = round(d.x);
+    document.getElementById('inY').value = round(d.y);
+    document.getElementById('inH').value = round(d.h);
+  }
+  function round(v){ return Math.round(v * 10) / 10; }
+
+  // ---------- 拖拽 ----------
+  var drag = null;
+
+  function onDown(e){
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    var el = e.currentTarget;
+    var d = byId(el.dataset.id);
+    var r = stage.getBoundingClientRect();
+    pushHistory();
+    select(d.id);
+    drag = {
+      d: d, el: el,
+      rect: r,
+      sx: e.clientX, sy: e.clientY,
+      ox: d.x, oy: d.y
+    };
+    el.setPointerCapture(e.pointerId);
+    el.classList.add('dragging');
+    e.preventDefault();
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  }
+
+  function onMove(e){
+    if (!drag) return;
+    var r = drag.rect;
+    var dx = (e.clientX - drag.sx) / r.width * 100;
+    var dy = (e.clientY - drag.sy) / r.height * 100;
+    drag.d.x = clamp(drag.ox + dx, -10, 110);
+    drag.d.y = clamp(drag.oy + dy, -10, 115);
+    paint();
+  }
+
+  function onUp(){
+    if (!drag) return;
+    drag.el.classList.remove('dragging');
+    drag = null;
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerup', onUp);
+    save();
+  }
+
+  function clamp(v, a, b){ return Math.min(b, Math.max(a, v)); }
+
+  // ---------- 滚轮缩放 ----------
+  stage.addEventListener('wheel', function(e){
+    if (!sel) return;
+    var d = byId(sel);
+    e.preventDefault();
+    var k = e.deltaY < 0 ? 1.022 : 1 / 1.022;
+    d.h = clamp(d.h * k, 2, 130);
+    paint();
+    clearTimeout(d._t);
+    d._t = setTimeout(save, 260);
+  }, { passive:false });
+
+  // ---------- 键盘 ----------
+  window.addEventListener('keydown', function(e){
+    if (!sel) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    var d = byId(sel);
+    var step = e.shiftKey ? 2 : 0.3;
+    var used = true;
+    switch (e.key){
+      case 'ArrowLeft':  d.x = clamp(d.x - step, -10, 110); break;
+      case 'ArrowRight': d.x = clamp(d.x + step, -10, 110); break;
+      case 'ArrowUp':    d.y = clamp(d.y - step, -10, 115); break;
+      case 'ArrowDown':  d.y = clamp(d.y + step, -10, 115); break;
+      case '+': case '=': d.h = clamp(d.h * 1.03, 2, 130); break;
+      case '-': case '_': d.h = clamp(d.h / 1.03, 2, 130); break;
+      case 'f': case 'F': d.flip = d.flip < 0 ? 1 : -1; break;
+      default: used = false;
+    }
+    if (used){ e.preventDefault(); paint(); save(); }
+  });
+
+  // ---------- 数字输入 ----------
+  ['inX','inY','inH'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', function(){
+      if (!sel) return;
+      var d = byId(sel);
+      var v = parseFloat(this.value);
+      if (isNaN(v)) return;
+      if (id === 'inX') d.x = clamp(v, -10, 110);
+      if (id === 'inY') d.y = clamp(v, -10, 115);
+      if (id === 'inH') d.h = clamp(v, 2, 130);
+      paint();
+    });
+  });
+
+  document.getElementById('btnFlip').onclick = function(){
+    if (!sel) return; pushHistory();
+    var d = byId(sel); d.flip = d.flip < 0 ? 1 : -1; paint(); save();
+  };
+  document.getElementById('btnReset').onclick = function(){
+    if (!sel) return; pushHistory();
+    var def = DEFAULT.filter(function(d){ return d.id === sel; })[0];
+    var d = byId(sel);
+    d.x = def.x; d.y = def.y; d.h = def.h; d.flip = def.flip;
+    paint(); save();
+  };
+
+  // ---------- 整体滤镜 ----------
+  var f = { bri:1, con:1, sat:1, fog:0 };
+  var PRESETS = {
+    '0': { bri:1.00, con:1.00, sat:1.00, fog:0.00 },
+    '1': { bri:1.06, con:0.90, sat:0.86, fog:0.03 },
+    '2': { bri:1.14, con:0.78, sat:0.72, fog:0.07 }
+  };
+
+  function applyFilter(){
+    // 雾用「降低对比 + 提亮」近似，比叠一层白更自然
+    var bri = f.bri + f.fog * 0.55;
+    var con = f.con * (1 - f.fog * 1.35);
+    var filter = 'brightness(' + bri.toFixed(2) + ') contrast(' + con.toFixed(2) + ') saturate(' + f.sat.toFixed(2) + ')';
+    Object.keys(nodes).forEach(function(k){ nodes[k].querySelector('img').style.filter = filter; });
+    document.getElementById('vBri').textContent = f.bri.toFixed(2);
+    document.getElementById('vCon').textContent = f.con.toFixed(2);
+    document.getElementById('vSat').textContent = f.sat.toFixed(2);
+    document.getElementById('vFog').textContent = f.fog.toFixed(2);
+    document.getElementById('rBri').value = f.bri;
+    document.getElementById('rCon').value = f.con;
+    document.getElementById('rSat').value = f.sat;
+    document.getElementById('rFog').value = f.fog;
+  }
+
+  [['rBri','bri'],['rCon','con'],['rSat','sat'],['rFog','fog']].forEach(function(p){
+    document.getElementById(p[0]).addEventListener('input', function(){
+      f[p[1]] = parseFloat(this.value);
+      applyFilter();
+    });
+    document.getElementById(p[0]).addEventListener('change', save);
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-preset]'), function(b){
+    b.onclick = function(){
+      var p = PRESETS[b.dataset.preset];
+      f = JSON.parse(JSON.stringify(p));
+      applyFilter(); save();
+      Array.prototype.forEach.call(document.querySelectorAll('[data-preset]'), function(x){
+        x.classList.toggle('on', x === b);
+      });
+    };
+  });
+
+  // ---------- 背景 ----------
+  Array.prototype.forEach.call(document.querySelectorAll('[data-bg]'), function(b){
+    b.onclick = function(){
+      document.getElementById('bgLayer').src = b.dataset.bg;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-bg]'), function(x){
+        x.classList.toggle('on', x === b);
+      });
+    };
+  });
+
+  // ---------- 撤销 ----------
+  function pushHistory(){
+    history.push(JSON.stringify(items));
+    if (history.length > 40) history.shift();
+  }
+  document.getElementById('btnUndo').onclick = function(){
+    if (!history.length) return;
+    items = JSON.parse(history.pop());
+    paint(); buildPicker(); save();
+  };
+
+  // ---------- 存取 ----------
+  function save(){
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify({ items: items, filter: f }));
+    } catch (err){}
+  }
+  function load(){
+    try {
+      var raw = localStorage.getItem(SAVE_KEY);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (o.filter) f = o.filter;
+      return o.items;
+    } catch (err){ return null; }
+  }
+
+  // ---------- 导出 ----------
+  function download(name, text, mime){
+    try {
+      var blob = new Blob(['\ufeff' + text], { type: (mime || 'application/json') + ';charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1200);
+      return true;
+    } catch (err){ return false; }
+  }
+
+  document.getElementById('btnExport').onclick = function(){
+    var bri = f.bri + f.fog * 0.55;
+    var con = f.con * (1 - f.fog * 1.35);
+    var lines = ['.stage img.item-img, .stage img.decor-img{'];
+    lines.push('  filter:brightness(' + bri.toFixed(2) + ') contrast(' + con.toFixed(2) + ') saturate(' + f.sat.toFixed(2) + ');');
+    lines.push('}');
+    items.forEach(function(d){
+      lines.push('.' + d.id + ' { --x:' + round(d.x) + '%; --y:' + round(d.y) + '%; --h:' + round(d.h) + '%; --z:' + Math.min(99, Math.round(d.y)) + (d.flip < 0 ? '; --flip:-1' : '') + '; }');
+    });
+
+    var payload = {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      filter: { bri: f.bri, con: f.con, sat: f.sat, fog: f.fog },
+      items: items.map(function(d){
+        return { id: d.id, label: d.label, x: round(d.x), y: round(d.y), h: round(d.h), flip: d.flip };
+      }),
+      css: lines.join('\n')
+    };
+    var ok = download('xinyu-layout.json', JSON.stringify(payload, null, 2));
+
+    document.getElementById('out').value = lines.join('\n');
+    var note = document.getElementById('saveNote');
+    if (note) note.textContent = ok
+      ? '已同时下载 xinyu-layout.json 到你的下载文件夹 —— 那个文件我能直接读到，不用再复制。'
+      : '';
+    document.getElementById('modal').classList.add('on');
+  };
+  document.getElementById('btnClose').onclick = function(){
+    document.getElementById('modal').classList.remove('on');
+  };
+  document.getElementById('btnCopy').onclick = function(){
+    var t = document.getElementById('out');
+    t.select();
+    try { document.execCommand('copy'); this.textContent = '已复制'; } catch (e){}
+    var self = this; setTimeout(function(){ self.textContent = '复制'; }, 1400);
+  };
+  document.getElementById('btnSave').onclick = function(){
+    save(); this.textContent = '已存'; var self = this;
+    setTimeout(function(){ self.textContent = '存到浏览器'; }, 1400);
+  };
+
+  // ---------- 启动 ----------
+  paint();
+  buildPicker();
+  applyFilter();
+  stage.addEventListener('pointerdown', function(e){
+    if (e.target === stage || e.target.id === 'bgLayer') select(null);
+  });
+
+})();
+</script>
+</body>
+</html>

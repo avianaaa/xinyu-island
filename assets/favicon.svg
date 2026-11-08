@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="15" fill="#FBF6EC"/>
+  <!-- 水彩晕开的岛体 -->
+  <path d="M9 43c0-12.7 10.3-23 23-23s23 10.3 23 23z" fill="#A8C09A" opacity=".38"/>
+  <path d="M13 43c0-10.5 8.5-19 19-19s19 8.5 19 19z" fill="#A8C09A" opacity=".45"/>
+  <!-- 太阳 -->
+  <circle cx="45" cy="21" r="6" fill="#F2B5A0" opacity=".9"/>
+  <!-- 铅笔线 -->
+  <path d="M9 43c0-12.7 10.3-23 23-23s23 10.3 23 23" fill="none" stroke="#8B6F52" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>
+  <path d="M11 46h42" stroke="#8B6F52" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>
+</svg>

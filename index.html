@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>心屿 · 你的情绪小岛</title>
+<meta name="description" content="心屿是一座只属于你的情绪小岛。每天用一封信记下心情和力气，看它们长成花园里的植物，在观测台看见自己的节律。数据只存在你自己的浏览器里。">
+<meta name="theme-color" content="#FBF6EC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="心屿 · 你的情绪小岛">
+<meta property="og:description" content="一座只属于你的情绪小岛。每天一封短信，记下心情和力气。">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/scenes/web/scene-sunny-path.jpg">
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<!-- 岛屿背景 -->
+<div class="scene" id="scene" data-weather="sunny"></div>
+<div class="scene-tint" id="sceneTint"></div>
+
+<!-- 首页：岛屿 -->
+<main class="island" id="island" aria-label="岛屿">
+  <header class="island-top">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 15c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3 15h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-name" id="brandName">心屿</span>
+      <span class="demo-chip" id="demoChip" hidden>演示数据</span>
+    </div>
+
+    <div class="top-right">
+      <div class="weather-switch" id="weatherSwitch" role="group" aria-label="天气">
+        <button data-w="sunny" class="on">晴</button>
+        <button data-w="rainy">雨</button>
+        <button data-w="night">夜</button>
+      </div>
+      <button class="icon-btn" id="btnSettings" aria-label="小木屋">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 5l8 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10.6V19h11v-8.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 问候 -->
+  <div class="greet" id="greet">
+    <p class="greet-line" id="greetLine">今天岛上没什么风。</p>
+    <p class="greet-sub" id="greetSub"></p>
+  </div>
+
+  <!-- 岛上植被：只负责景深，不参与交互。--y 同时决定 z 序，越靠下越靠前 -->
+  <div class="decor" aria-hidden="true">
+    <span class="d-obj d-tree d-tree-l">
+      <img src="assets/decor/tree-a-t.webp" alt="">
+    </span>
+    <span class="d-obj d-tree d-tree-r">
+      <img src="assets/decor/tree-a-t.webp" alt="">
+    </span>
+    <span class="d-obj d-bush d-bush-a">
+      <img src="assets/decor/bush-a-t.webp" alt="">
+    </span>
+    <span class="d-obj d-bush d-bush-b">
+      <img src="assets/decor/bush-a-t.webp" alt="">
+    </span>
+    <span class="d-obj d-bush d-bush-c">
+      <img src="assets/decor/bush-a-t.webp" alt="">
+    </span>
+  </div>
+
+  <!-- 互动物件：--h 是相对舞台高的尺寸，按真实比例排（房子最大，盆栽最小）
+       --y 同时当作景深层级用，越靠下越靠前 -->
+  <div class="items" id="items">
+    <button class="item it-cabin" data-go="#/cabin" aria-label="小木屋">
+      <span class="item-shadow"></span>
+      <img src="assets/items/sprites/item-cabin-t.webp" alt="">
+      <span class="item-label">小木屋</span>
+    </button>
+    <button class="item it-board" data-go="#/calendar" aria-label="公告板">
+      <span class="item-shadow"></span>
+      <img src="assets/items/sprites/item-board-t.webp" alt="">
+      <span class="item-label">公告板</span>
+    </button>
+    <button class="item it-mailbox" data-go="#/record" aria-label="信箱">
+      <span class="item-shadow"></span>
+      <img src="assets/items/sprites/item-mailbox-t.webp" alt="">
+      <span class="item-label">写今天</span>
+      <span class="item-badge" id="mailBadge" hidden>新</span>
+    </button>
+    <button class="item it-scope" data-go="#/analysis" aria-label="观测台">
+      <span class="item-shadow"></span>
+      <img src="assets/items/sprites/item-scope-t.webp" alt="">
+      <span class="item-label">观测台</span>
+    </button>
+    <button class="item it-plant" data-go="#/garden" aria-label="盆栽">
+      <span class="item-shadow"></span>
+      <img src="assets/items/sprites/item-plant-t.webp" alt="">
+      <span class="item-label">情绪花园</span>
+    </button>
+  </div>
+
+  <!-- 岛民：小狐狸 -->
+  <div class="fox" id="fox" role="button" tabindex="0" aria-label="岛民小狐狸">
+    <span class="fox-shadow" id="foxShadow"></span>
+    <div class="fox-flip" id="foxFlip">
+      <div class="fox-body" id="foxBody">
+        <img class="fox-layer" id="foxLayerA" alt="">
+        <img class="fox-layer" id="foxLayerB" alt="">
+      </div>
+    </div>
+    <div class="fox-bubble" id="foxBubble"></div>
+  </div>
+
+  <footer class="island-foot">
+    <span id="footHint">岛上的东西都可以点</span>
+  </footer>
+</main>
+
+<!-- 子页面：浮在岛上的纸卡 -->
+<section class="sheet" id="sheet" hidden aria-live="polite">
+  <div class="sheet-panel" id="sheetPanel">
+    <button class="sheet-back" id="sheetBack" aria-label="回到岛上">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 6 9 12l5.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>回岛上</span>
+    </button>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+</section>
+
+<!-- 提交仪式 -->
+<div class="ritual" id="ritual" hidden>
+  <div class="ritual-glow"></div>
+  <img class="ritual-img" id="ritualImg" alt="">
+  <p class="ritual-text" id="ritualText"></p>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="scripts/demo-data.js"></script>
+<script src="scripts/store.js"></script>
+<script src="scripts/analysis.js"></script>
+<script src="scripts/plant.js"></script>
+<script src="scripts/sound.js"></script>
+<script src="scripts/fox.js"></script>
+<script src="scripts/views.js"></script>
+<script src="scripts/app.js"></script>
+</body>
+</html>

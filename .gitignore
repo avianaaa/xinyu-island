@@ -1,0 +1,29 @@
+# 依赖
+node_modules/
+
+# 调试与实验产物
+_preview/
+_gen/
+_archive/
+.shots/
+
+# 发布产物（由 tools/build-dist.sh 重建，不进库）
+dist/
+
+# 内部标记文件与项目记忆（记忆里含个人状态记录，不入库）
+.wbapp_*.genie
+.workbuddy/
+
+# 文档流水线的中间产物（成品 docx 在根目录，已入库）
+output/
+
+# 手机竖版背景是生成物，由 tools/make-portrait-scenes.py 重建
+# （体积不大，先留着方便直接看效果；确定后可以注释掉下面一行改回入库）
+# assets/scenes/phone/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/

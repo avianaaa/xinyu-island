@@ -1,0 +1,1909 @@
+{
+  "note": "合成数据真值参数。分析时应先隐藏本文件，用数据反推，再与本文件比对。",
+  "params": {
+    "seed": 20261103,
+    "date_start": "2025-11-01",
+    "date_end": "2026-10-31",
+    "valence_base": 3.5,
+    "valence_noise_sd": 0.5,
+    "energy_base": 2.15,
+    "energy_from_valence": 0.72,
+    "energy_noise_sd": 0.45,
+    "weekday_effect": [
+      -0.1,
+      -0.02,
+      0.02,
+      0.06,
+      0.16,
+      0.2,
+      0.1
+    ],
+    "events": [
+      [
+        "2025-11-10",
+        "2025-11-21",
+        -0.8,
+        "秋季期中"
+      ],
+      [
+        "2026-01-05",
+        "2026-01-20",
+        -1.05,
+        "期末周"
+      ],
+      [
+        "2026-01-21",
+        "2026-02-22",
+        0.45,
+        "寒假"
+      ],
+      [
+        "2026-04-20",
+        "2026-05-02",
+        -0.9,
+        "春季期中"
+      ],
+      [
+        "2026-06-15",
+        "2026-06-30",
+        -1.05,
+        "期末周"
+      ],
+      [
+        "2026-07-06",
+        "2026-08-20",
+        0.35,
+        "暑假"
+      ]
+    ],
+    "low_days_per_week": {
+      "1": 0.6,
+      "2": 0.4
+    },
+    "low_valence_drop": -1.15,
+    "low_energy_drop": -0.75,
+    "miss_base": 0.02,
+    "miss_if_low_day": 0.3,
+    "miss_if_event": 0.12,
+    "sleep_base": 6.4,
+    "sleep_from_energy": 0.55,
+    "sleep_noise_sd": 0.55
+  },
+  "summary": {
+    "days_total": 365,
+    "days_recorded": 331,
+    "days_missed": 34,
+    "miss_rate": 0.0932,
+    "true_valence_mean_all_days": 3.2266,
+    "true_valence_mean_recorded": 3.2912,
+    "missed_days_valence_mean": 2.5972,
+    "low_day_count": 73
+  },
+  "truth_series": [
+    {
+      "date": "2025-11-01",
+      "valence_cont": 2.4632,
+      "energy_cont": 0.6486
+    },
+    {
+      "date": "2025-11-02",
+      "valence_cont": 3.4223,
+      "energy_cont": 2.0254
+    },
+    {
+      "date": "2025-11-03",
+      "valence_cont": 2.715,
+      "energy_cont": 1.4425
+    },
+    {
+      "date": "2025-11-04",
+      "valence_cont": 2.7858,
+      "energy_cont": 0.681
+    },
+    {
+      "date": "2025-11-05",
+      "valence_cont": 1.7595,
+      "energy_cont": 0.1835
+    },
+    {
+      "date": "2025-11-06",
+      "valence_cont": 3.4442,
+      "energy_cont": 2.0735
+    },
+    {
+      "date": "2025-11-07",
+      "valence_cont": 3.6561,
+      "energy_cont": 2.3955
+    },
+    {
+      "date": "2025-11-08",
+      "valence_cont": 2.2977,
+      "energy_cont": 0.1578
+    },
+    {
+      "date": "2025-11-09",
+      "valence_cont": 3.7347,
+      "energy_cont": 2.362
+    },
+    {
+      "date": "2025-11-10",
+      "valence_cont": 1.6967,
+      "energy_cont": 0.0437
+    },
+    {
+      "date": "2025-11-11",
+      "valence_cont": 2.5511,
+      "energy_cont": 1.4131
+    },
+    {
+      "date": "2025-11-12",
+      "valence_cont": 2.6342,
+      "energy_cont": 1.3078
+    },
+    {
+      "date": "2025-11-13",
+      "valence_cont": 1.5052,
+      "energy_cont": 1.3772
+    },
+    {
+      "date": "2025-11-14",
+      "valence_cont": 2.1833,
+      "energy_cont": 0.9786
+    },
+    {
+      "date": "2025-11-15",
+      "valence_cont": 3.0591,
+      "energy_cont": 1.3504
+    },
+    {
+      "date": "2025-11-16",
+      "valence_cont": 2.7656,
+      "energy_cont": 2.2989
+    },
+    {
+      "date": "2025-11-17",
+      "valence_cont": 3.6195,
+      "energy_cont": 1.6703
+    },
+    {
+      "date": "2025-11-18",
+      "valence_cont": 2.9112,
+      "energy_cont": 1.8382
+    },
+    {
+      "date": "2025-11-19",
+      "valence_cont": 2.9194,
+      "energy_cont": 1.2265
+    },
+    {
+      "date": "2025-11-20",
+      "valence_cont": 2.2638,
+      "energy_cont": 0.2573
+    },
+    {
+      "date": "2025-11-21",
+      "valence_cont": 3.0106,
+      "energy_cont": 1.8671
+    },
+    {
+      "date": "2025-11-22",
+      "valence_cont": 4.4325,
+      "energy_cont": 2.0382
+    },
+    {
+      "date": "2025-11-23",
+      "valence_cont": 3.7003,
+      "energy_cont": 2.8892
+    },
+    {
+      "date": "2025-11-24",
+      "valence_cont": 3.2433,
+      "energy_cont": 1.6946
+    },
+    {
+      "date": "2025-11-25",
+      "valence_cont": 2.1342,
+      "energy_cont": 0.566
+    },
+    {
+      "date": "2025-11-26",
+      "valence_cont": 3.5471,
+      "energy_cont": 2.3224
+    },
+    {
+      "date": "2025-11-27",
+      "valence_cont": 2.6674,
+      "energy_cont": 1.8837
+    },
+    {
+      "date": "2025-11-28",
+      "valence_cont": 4.1689,
+      "energy_cont": 2.573
+    },
+    {
+      "date": "2025-11-29",
+      "valence_cont": 4.3638,
+      "energy_cont": 3.4531
+    },
+    {
+      "date": "2025-11-30",
+      "valence_cont": 3.3185,
+      "energy_cont": 2.0949
+    },
+    {
+      "date": "2025-12-01",
+      "valence_cont": 3.7521,
+      "energy_cont": 2.3641
+    },
+    {
+      "date": "2025-12-02",
+      "valence_cont": 4.1481,
+      "energy_cont": 2.5969
+    },
+    {
+      "date": "2025-12-03",
+      "valence_cont": 4.0099,
+      "energy_cont": 2.5472
+    },
+    {
+      "date": "2025-12-04",
+      "valence_cont": 2.6287,
+      "energy_cont": 2.4585
+    },
+    {
+      "date": "2025-12-05",
+      "valence_cont": 3.671,
+      "energy_cont": 2.4254
+    },
+    {
+      "date": "2025-12-06",
+      "valence_cont": 3.7726,
+      "energy_cont": 1.6362
+    },
+    {
+      "date": "2025-12-07",
+      "valence_cont": 2.2358,
+      "energy_cont": -0.4033
+    },
+    {
+      "date": "2025-12-08",
+      "valence_cont": 2.829,
+      "energy_cont": 1.7018
+    },
+    {
+      "date": "2025-12-09",
+      "valence_cont": 2.9351,
+      "energy_cont": 1.5765
+    },
+    {
+      "date": "2025-12-10",
+      "valence_cont": 3.6705,
+      "energy_cont": 2.6125
+    },
+    {
+      "date": "2025-12-11",
+      "valence_cont": 3.0721,
+      "energy_cont": 0.7413
+    },
+    {
+      "date": "2025-12-12",
+      "valence_cont": 2.7539,
+      "energy_cont": 0.6391
+    },
+    {
+      "date": "2025-12-13",
+      "valence_cont": 3.366,
+      "energy_cont": 1.4142
+    },
+    {
+      "date": "2025-12-14",
+      "valence_cont": 4.4589,
+      "energy_cont": 3.5384
+    },
+    {
+      "date": "2025-12-15",
+      "valence_cont": 3.4315,
+      "energy_cont": 2.6917
+    },
+    {
+      "date": "2025-12-16",
+      "valence_cont": 3.4216,
+      "energy_cont": 2.7072
+    },
+    {
+      "date": "2025-12-17",
+      "valence_cont": 2.4131,
+      "energy_cont": 0.9032
+    },
+    {
+      "date": "2025-12-18",
+      "valence_cont": 2.694,
+      "energy_cont": 1.7842
+    },
+    {
+      "date": "2025-12-19",
+      "valence_cont": 2.7793,
+      "energy_cont": 1.4559
+    },
+    {
+      "date": "2025-12-20",
+      "valence_cont": 2.2844,
+      "energy_cont": 0.3317
+    },
+    {
+      "date": "2025-12-21",
+      "valence_cont": 3.0655,
+      "energy_cont": 1.7114
+    },
+    {
+      "date": "2025-12-22",
+      "valence_cont": 4.0185,
+      "energy_cont": 2.1284
+    },
+    {
+      "date": "2025-12-23",
+      "valence_cont": 3.5441,
+      "energy_cont": 2.6644
+    },
+    {
+      "date": "2025-12-24",
+      "valence_cont": 4.5614,
+      "energy_cont": 4.0995
+    },
+    {
+      "date": "2025-12-25",
+      "valence_cont": 3.5947,
+      "energy_cont": 2.0041
+    },
+    {
+      "date": "2025-12-26",
+      "valence_cont": 4.6487,
+      "energy_cont": 3.1236
+    },
+    {
+      "date": "2025-12-27",
+      "valence_cont": 2.8649,
+      "energy_cont": 0.8385
+    },
+    {
+      "date": "2025-12-28",
+      "valence_cont": 4.1056,
+      "energy_cont": 3.4719
+    },
+    {
+      "date": "2025-12-29",
+      "valence_cont": 3.1126,
+      "energy_cont": 1.4578
+    },
+    {
+      "date": "2025-12-30",
+      "valence_cont": 3.8347,
+      "energy_cont": 3.4501
+    },
+    {
+      "date": "2025-12-31",
+      "valence_cont": 4.7757,
+      "energy_cont": 2.7004
+    },
+    {
+      "date": "2026-01-01",
+      "valence_cont": 3.5674,
+      "energy_cont": 1.3675
+    },
+    {
+      "date": "2026-01-02",
+      "valence_cont": 3.3684,
+      "energy_cont": 2.5866
+    },
+    {
+      "date": "2026-01-03",
+      "valence_cont": 1.9433,
+      "energy_cont": 0.2598
+    },
+    {
+      "date": "2026-01-04",
+      "valence_cont": 2.7976,
+      "energy_cont": 1.5909
+    },
+    {
+      "date": "2026-01-05",
+      "valence_cont": 1.6224,
+      "energy_cont": 0.4384
+    },
+    {
+      "date": "2026-01-06",
+      "valence_cont": 2.8044,
+      "energy_cont": 2.0492
+    },
+    {
+      "date": "2026-01-07",
+      "valence_cont": 3.3378,
+      "energy_cont": 1.5249
+    },
+    {
+      "date": "2026-01-08",
+      "valence_cont": 1.2873,
+      "energy_cont": -0.1831
+    },
+    {
+      "date": "2026-01-09",
+      "valence_cont": 2.7491,
+      "energy_cont": 1.9969
+    },
+    {
+      "date": "2026-01-10",
+      "valence_cont": 2.4927,
+      "energy_cont": 1.3901
+    },
+    {
+      "date": "2026-01-11",
+      "valence_cont": 2.6237,
+      "energy_cont": 0.7969
+    },
+    {
+      "date": "2026-01-12",
+      "valence_cont": 2.042,
+      "energy_cont": 1.203
+    },
+    {
+      "date": "2026-01-13",
+      "valence_cont": 1.867,
+      "energy_cont": 0.4981
+    },
+    {
+      "date": "2026-01-14",
+      "valence_cont": 1.9394,
+      "energy_cont": 0.7645
+    },
+    {
+      "date": "2026-01-15",
+      "valence_cont": 1.6742,
+      "energy_cont": 0.7666
+    },
+    {
+      "date": "2026-01-16",
+      "valence_cont": 2.324,
+      "energy_cont": 1.7235
+    },
+    {
+      "date": "2026-01-17",
+      "valence_cont": 1.6701,
+      "energy_cont": 0.5052
+    },
+    {
+      "date": "2026-01-18",
+      "valence_cont": 2.8308,
+      "energy_cont": 1.7664
+    },
+    {
+      "date": "2026-01-19",
+      "valence_cont": 2.3034,
+      "energy_cont": 1.1466
+    },
+    {
+      "date": "2026-01-20",
+      "valence_cont": 1.9813,
+      "energy_cont": 1.0408
+    },
+    {
+      "date": "2026-01-21",
+      "valence_cont": 3.7009,
+      "energy_cont": 2.5464
+    },
+    {
+      "date": "2026-01-22",
+      "valence_cont": 2.501,
+      "energy_cont": 1.0065
+    },
+    {
+      "date": "2026-01-23",
+      "valence_cont": 4.851,
+      "energy_cont": 3.2157
+    },
+    {
+      "date": "2026-01-24",
+      "valence_cont": 3.9512,
+      "energy_cont": 1.7209
+    },
+    {
+      "date": "2026-01-25",
+      "valence_cont": 3.0421,
+      "energy_cont": 0.8462
+    },
+    {
+      "date": "2026-01-26",
+      "valence_cont": 3.2903,
+      "energy_cont": 1.7673
+    },
+    {
+      "date": "2026-01-27",
+      "valence_cont": 2.5156,
+      "energy_cont": 1.0225
+    },
+    {
+      "date": "2026-01-28",
+      "valence_cont": 3.2161,
+      "energy_cont": 1.4427
+    },
+    {
+      "date": "2026-01-29",
+      "valence_cont": 3.286,
+      "energy_cont": 1.5732
+    },
+    {
+      "date": "2026-01-30",
+      "valence_cont": 3.0109,
+      "energy_cont": 0.8228
+    },
+    {
+      "date": "2026-01-31",
+      "valence_cont": 4.9558,
+      "energy_cont": 3.7516
+    },
+    {
+      "date": "2026-02-01",
+      "valence_cont": 3.5631,
+      "energy_cont": 1.6704
+    },
+    {
+      "date": "2026-02-02",
+      "valence_cont": 2.5005,
+      "energy_cont": 1.1491
+    },
+    {
+      "date": "2026-02-03",
+      "valence_cont": 4.2068,
+      "energy_cont": 1.965
+    },
+    {
+      "date": "2026-02-04",
+      "valence_cont": 4.2027,
+      "energy_cont": 2.4894
+    },
+    {
+      "date": "2026-02-05",
+      "valence_cont": 3.7344,
+      "energy_cont": 2.2418
+    },
+    {
+      "date": "2026-02-06",
+      "valence_cont": 4.928,
+      "energy_cont": 3.4095
+    },
+    {
+      "date": "2026-02-07",
+      "valence_cont": 3.8357,
+      "energy_cont": 1.5991
+    },
+    {
+      "date": "2026-02-08",
+      "valence_cont": 3.7373,
+      "energy_cont": 1.3331
+    },
+    {
+      "date": "2026-02-09",
+      "valence_cont": 2.468,
+      "energy_cont": 0.5803
+    },
+    {
+      "date": "2026-02-10",
+      "valence_cont": 3.5156,
+      "energy_cont": 2.4839
+    },
+    {
+      "date": "2026-02-11",
+      "valence_cont": 2.7558,
+      "energy_cont": -0.2859
+    },
+    {
+      "date": "2026-02-12",
+      "valence_cont": 2.9082,
+      "energy_cont": 1.7951
+    },
+    {
+      "date": "2026-02-13",
+      "valence_cont": 3.531,
+      "energy_cont": 2.4037
+    },
+    {
+      "date": "2026-02-14",
+      "valence_cont": 5.0553,
+      "energy_cont": 2.3633
+    },
+    {
+      "date": "2026-02-15",
+      "valence_cont": 3.7947,
+      "energy_cont": 2.859
+    },
+    {
+      "date": "2026-02-16",
+      "valence_cont": 2.8689,
+      "energy_cont": 1.6195
+    },
+    {
+      "date": "2026-02-17",
+      "valence_cont": 3.9998,
+      "energy_cont": 1.8943
+    },
+    {
+      "date": "2026-02-18",
+      "valence_cont": 4.7237,
+      "energy_cont": 2.9463
+    },
+    {
+      "date": "2026-02-19",
+      "valence_cont": 4.7556,
+      "energy_cont": 2.9331
+    },
+    {
+      "date": "2026-02-20",
+      "valence_cont": 4.1919,
+      "energy_cont": 2.5182
+    },
+    {
+      "date": "2026-02-21",
+      "valence_cont": 4.6041,
+      "energy_cont": 3.8498
+    },
+    {
+      "date": "2026-02-22",
+      "valence_cont": 2.5696,
+      "energy_cont": 0.8834
+    },
+    {
+      "date": "2026-02-23",
+      "valence_cont": 2.7664,
+      "energy_cont": 1.5022
+    },
+    {
+      "date": "2026-02-24",
+      "valence_cont": 3.9139,
+      "energy_cont": 2.7088
+    },
+    {
+      "date": "2026-02-25",
+      "valence_cont": 3.9335,
+      "energy_cont": 1.1281
+    },
+    {
+      "date": "2026-02-26",
+      "valence_cont": 3.3348,
+      "energy_cont": 1.1965
+    },
+    {
+      "date": "2026-02-27",
+      "valence_cont": 4.4088,
+      "energy_cont": 3.1123
+    },
+    {
+      "date": "2026-02-28",
+      "valence_cont": 3.116,
+      "energy_cont": 1.8081
+    },
+    {
+      "date": "2026-03-01",
+      "valence_cont": 3.0126,
+      "energy_cont": 1.3516
+    },
+    {
+      "date": "2026-03-02",
+      "valence_cont": 1.1276,
+      "energy_cont": -0.5892
+    },
+    {
+      "date": "2026-03-03",
+      "valence_cont": 3.279,
+      "energy_cont": 2.6029
+    },
+    {
+      "date": "2026-03-04",
+      "valence_cont": 3.4181,
+      "energy_cont": 1.453
+    },
+    {
+      "date": "2026-03-05",
+      "valence_cont": 2.0043,
+      "energy_cont": -0.8458
+    },
+    {
+      "date": "2026-03-06",
+      "valence_cont": 3.3277,
+      "energy_cont": 2.1314
+    },
+    {
+      "date": "2026-03-07",
+      "valence_cont": 4.0549,
+      "energy_cont": 3.0553
+    },
+    {
+      "date": "2026-03-08",
+      "valence_cont": 3.6747,
+      "energy_cont": 2.9058
+    },
+    {
+      "date": "2026-03-09",
+      "valence_cont": 3.4902,
+      "energy_cont": 2.528
+    },
+    {
+      "date": "2026-03-10",
+      "valence_cont": 2.6065,
+      "energy_cont": 0.9285
+    },
+    {
+      "date": "2026-03-11",
+      "valence_cont": 3.5208,
+      "energy_cont": 2.0406
+    },
+    {
+      "date": "2026-03-12",
+      "valence_cont": 3.1821,
+      "energy_cont": 1.9343
+    },
+    {
+      "date": "2026-03-13",
+      "valence_cont": 2.7236,
+      "energy_cont": 2.3887
+    },
+    {
+      "date": "2026-03-14",
+      "valence_cont": 3.4031,
+      "energy_cont": 1.698
+    },
+    {
+      "date": "2026-03-15",
+      "valence_cont": 2.3634,
+      "energy_cont": 0.9821
+    },
+    {
+      "date": "2026-03-16",
+      "valence_cont": 3.184,
+      "energy_cont": 1.538
+    },
+    {
+      "date": "2026-03-17",
+      "valence_cont": 3.0149,
+      "energy_cont": 2.3584
+    },
+    {
+      "date": "2026-03-18",
+      "valence_cont": 3.8169,
+      "energy_cont": 2.8468
+    },
+    {
+      "date": "2026-03-19",
+      "valence_cont": 2.9753,
+      "energy_cont": 2.4257
+    },
+    {
+      "date": "2026-03-20",
+      "valence_cont": 3.2941,
+      "energy_cont": 3.18
+    },
+    {
+      "date": "2026-03-21",
+      "valence_cont": 4.4828,
+      "energy_cont": 3.2618
+    },
+    {
+      "date": "2026-03-22",
+      "valence_cont": 1.9292,
+      "energy_cont": -0.1878
+    },
+    {
+      "date": "2026-03-23",
+      "valence_cont": 3.2837,
+      "energy_cont": 1.8769
+    },
+    {
+      "date": "2026-03-24",
+      "valence_cont": 2.4938,
+      "energy_cont": 1.1584
+    },
+    {
+      "date": "2026-03-25",
+      "valence_cont": 3.8062,
+      "energy_cont": 2.1448
+    },
+    {
+      "date": "2026-03-26",
+      "valence_cont": 3.9809,
+      "energy_cont": 2.7025
+    },
+    {
+      "date": "2026-03-27",
+      "valence_cont": 3.6942,
+      "energy_cont": 2.2788
+    },
+    {
+      "date": "2026-03-28",
+      "valence_cont": 3.5876,
+      "energy_cont": 1.961
+    },
+    {
+      "date": "2026-03-29",
+      "valence_cont": 4.7497,
+      "energy_cont": 2.353
+    },
+    {
+      "date": "2026-03-30",
+      "valence_cont": 3.9609,
+      "energy_cont": 2.2648
+    },
+    {
+      "date": "2026-03-31",
+      "valence_cont": 2.1287,
+      "energy_cont": 1.3639
+    },
+    {
+      "date": "2026-04-01",
+      "valence_cont": 3.5857,
+      "energy_cont": 2.8906
+    },
+    {
+      "date": "2026-04-02",
+      "valence_cont": 3.0665,
+      "energy_cont": 1.7933
+    },
+    {
+      "date": "2026-04-03",
+      "valence_cont": 3.4973,
+      "energy_cont": 2.203
+    },
+    {
+      "date": "2026-04-04",
+      "valence_cont": 3.241,
+      "energy_cont": 1.7256
+    },
+    {
+      "date": "2026-04-05",
+      "valence_cont": 4.0912,
+      "energy_cont": 2.3317
+    },
+    {
+      "date": "2026-04-06",
+      "valence_cont": 2.7393,
+      "energy_cont": 1.7004
+    },
+    {
+      "date": "2026-04-07",
+      "valence_cont": 3.0615,
+      "energy_cont": 1.948
+    },
+    {
+      "date": "2026-04-08",
+      "valence_cont": 3.1003,
+      "energy_cont": 0.8408
+    },
+    {
+      "date": "2026-04-09",
+      "valence_cont": 3.9198,
+      "energy_cont": 2.7483
+    },
+    {
+      "date": "2026-04-10",
+      "valence_cont": 3.0783,
+      "energy_cont": 1.5654
+    },
+    {
+      "date": "2026-04-11",
+      "valence_cont": 3.661,
+      "energy_cont": 2.6168
+    },
+    {
+      "date": "2026-04-12",
+      "valence_cont": 2.4207,
+      "energy_cont": 0.6551
+    },
+    {
+      "date": "2026-04-13",
+      "valence_cont": 2.5343,
+      "energy_cont": 1.2783
+    },
+    {
+      "date": "2026-04-14",
+      "valence_cont": 3.7942,
+      "energy_cont": 1.9
+    },
+    {
+      "date": "2026-04-15",
+      "valence_cont": 1.9807,
+      "energy_cont": 0.4373
+    },
+    {
+      "date": "2026-04-16",
+      "valence_cont": 3.2706,
+      "energy_cont": 1.6375
+    },
+    {
+      "date": "2026-04-17",
+      "valence_cont": 3.6026,
+      "energy_cont": 2.6311
+    },
+    {
+      "date": "2026-04-18",
+      "valence_cont": 4.3031,
+      "energy_cont": 2.7741
+    },
+    {
+      "date": "2026-04-19",
+      "valence_cont": 3.3288,
+      "energy_cont": 2.1936
+    },
+    {
+      "date": "2026-04-20",
+      "valence_cont": 2.3036,
+      "energy_cont": 0.814
+    },
+    {
+      "date": "2026-04-21",
+      "valence_cont": 2.633,
+      "energy_cont": 1.7131
+    },
+    {
+      "date": "2026-04-22",
+      "valence_cont": 2.7277,
+      "energy_cont": 1.8018
+    },
+    {
+      "date": "2026-04-23",
+      "valence_cont": 1.9048,
+      "energy_cont": 0.5937
+    },
+    {
+      "date": "2026-04-24",
+      "valence_cont": 2.7735,
+      "energy_cont": 1.185
+    },
+    {
+      "date": "2026-04-25",
+      "valence_cont": 2.7642,
+      "energy_cont": 1.6311
+    },
+    {
+      "date": "2026-04-26",
+      "valence_cont": 1.8176,
+      "energy_cont": 1.4533
+    },
+    {
+      "date": "2026-04-27",
+      "valence_cont": 2.609,
+      "energy_cont": 1.2763
+    },
+    {
+      "date": "2026-04-28",
+      "valence_cont": 2.4453,
+      "energy_cont": 0.8864
+    },
+    {
+      "date": "2026-04-29",
+      "valence_cont": 1.5583,
+      "energy_cont": -0.6608
+    },
+    {
+      "date": "2026-04-30",
+      "valence_cont": 2.0628,
+      "energy_cont": -0.2664
+    },
+    {
+      "date": "2026-05-01",
+      "valence_cont": 2.5727,
+      "energy_cont": 1.7315
+    },
+    {
+      "date": "2026-05-02",
+      "valence_cont": 2.1486,
+      "energy_cont": 0.9603
+    },
+    {
+      "date": "2026-05-03",
+      "valence_cont": 4.5078,
+      "energy_cont": 2.0266
+    },
+    {
+      "date": "2026-05-04",
+      "valence_cont": 3.3267,
+      "energy_cont": 1.4099
+    },
+    {
+      "date": "2026-05-05",
+      "valence_cont": 2.6639,
+      "energy_cont": 0.303
+    },
+    {
+      "date": "2026-05-06",
+      "valence_cont": 3.2667,
+      "energy_cont": 0.9886
+    },
+    {
+      "date": "2026-05-07",
+      "valence_cont": 3.428,
+      "energy_cont": 2.1425
+    },
+    {
+      "date": "2026-05-08",
+      "valence_cont": 3.8177,
+      "energy_cont": 1.5027
+    },
+    {
+      "date": "2026-05-09",
+      "valence_cont": 3.3578,
+      "energy_cont": 2.8036
+    },
+    {
+      "date": "2026-05-10",
+      "valence_cont": 3.8299,
+      "energy_cont": 1.914
+    },
+    {
+      "date": "2026-05-11",
+      "valence_cont": 3.7206,
+      "energy_cont": 2.3526
+    },
+    {
+      "date": "2026-05-12",
+      "valence_cont": 3.1113,
+      "energy_cont": 1.8711
+    },
+    {
+      "date": "2026-05-13",
+      "valence_cont": 1.9114,
+      "energy_cont": 0.5817
+    },
+    {
+      "date": "2026-05-14",
+      "valence_cont": 3.1417,
+      "energy_cont": 0.8589
+    },
+    {
+      "date": "2026-05-15",
+      "valence_cont": 3.775,
+      "energy_cont": 2.7675
+    },
+    {
+      "date": "2026-05-16",
+      "valence_cont": 2.9535,
+      "energy_cont": 1.9997
+    },
+    {
+      "date": "2026-05-17",
+      "valence_cont": 3.7756,
+      "energy_cont": 0.8598
+    },
+    {
+      "date": "2026-05-18",
+      "valence_cont": 3.7269,
+      "energy_cont": 1.5559
+    },
+    {
+      "date": "2026-05-19",
+      "valence_cont": 3.409,
+      "energy_cont": 2.5967
+    },
+    {
+      "date": "2026-05-20",
+      "valence_cont": 2.8001,
+      "energy_cont": 2.2982
+    },
+    {
+      "date": "2026-05-21",
+      "valence_cont": 4.2819,
+      "energy_cont": 3.1097
+    },
+    {
+      "date": "2026-05-22",
+      "valence_cont": 2.3992,
+      "energy_cont": 0.3832
+    },
+    {
+      "date": "2026-05-23",
+      "valence_cont": 3.9822,
+      "energy_cont": 2.5879
+    },
+    {
+      "date": "2026-05-24",
+      "valence_cont": 3.7049,
+      "energy_cont": 2.3184
+    },
+    {
+      "date": "2026-05-25",
+      "valence_cont": 3.8517,
+      "energy_cont": 2.2426
+    },
+    {
+      "date": "2026-05-26",
+      "valence_cont": 2.8358,
+      "energy_cont": 1.4833
+    },
+    {
+      "date": "2026-05-27",
+      "valence_cont": 2.3132,
+      "energy_cont": 1.7402
+    },
+    {
+      "date": "2026-05-28",
+      "valence_cont": 3.3804,
+      "energy_cont": 2.1325
+    },
+    {
+      "date": "2026-05-29",
+      "valence_cont": 3.1077,
+      "energy_cont": 0.9685
+    },
+    {
+      "date": "2026-05-30",
+      "valence_cont": 3.5549,
+      "energy_cont": 2.6929
+    },
+    {
+      "date": "2026-05-31",
+      "valence_cont": 4.134,
+      "energy_cont": 2.9017
+    },
+    {
+      "date": "2026-06-01",
+      "valence_cont": 3.4156,
+      "energy_cont": 2.0035
+    },
+    {
+      "date": "2026-06-02",
+      "valence_cont": 2.6739,
+      "energy_cont": 2.1068
+    },
+    {
+      "date": "2026-06-03",
+      "valence_cont": 3.5201,
+      "energy_cont": 1.7794
+    },
+    {
+      "date": "2026-06-04",
+      "valence_cont": 2.715,
+      "energy_cont": 1.6293
+    },
+    {
+      "date": "2026-06-05",
+      "valence_cont": 3.8433,
+      "energy_cont": 2.3689
+    },
+    {
+      "date": "2026-06-06",
+      "valence_cont": 3.0539,
+      "energy_cont": 0.9739
+    },
+    {
+      "date": "2026-06-07",
+      "valence_cont": 4.0183,
+      "energy_cont": 2.6803
+    },
+    {
+      "date": "2026-06-08",
+      "valence_cont": 3.3069,
+      "energy_cont": 1.1781
+    },
+    {
+      "date": "2026-06-09",
+      "valence_cont": 3.4848,
+      "energy_cont": 2.5774
+    },
+    {
+      "date": "2026-06-10",
+      "valence_cont": 2.8608,
+      "energy_cont": 1.9852
+    },
+    {
+      "date": "2026-06-11",
+      "valence_cont": 1.5648,
+      "energy_cont": 0.9755
+    },
+    {
+      "date": "2026-06-12",
+      "valence_cont": 3.5521,
+      "energy_cont": 2.5774
+    },
+    {
+      "date": "2026-06-13",
+      "valence_cont": 3.9365,
+      "energy_cont": 2.1167
+    },
+    {
+      "date": "2026-06-14",
+      "valence_cont": 3.3735,
+      "energy_cont": 1.7152
+    },
+    {
+      "date": "2026-06-15",
+      "valence_cont": 1.3695,
+      "energy_cont": 0.384
+    },
+    {
+      "date": "2026-06-16",
+      "valence_cont": 2.3533,
+      "energy_cont": 0.7871
+    },
+    {
+      "date": "2026-06-17",
+      "valence_cont": 2.238,
+      "energy_cont": 0.9072
+    },
+    {
+      "date": "2026-06-18",
+      "valence_cont": 2.2446,
+      "energy_cont": 1.9096
+    },
+    {
+      "date": "2026-06-19",
+      "valence_cont": 2.7738,
+      "energy_cont": 2.0399
+    },
+    {
+      "date": "2026-06-20",
+      "valence_cont": 2.5323,
+      "energy_cont": 1.2567
+    },
+    {
+      "date": "2026-06-21",
+      "valence_cont": 0.8427,
+      "energy_cont": -0.0854
+    },
+    {
+      "date": "2026-06-22",
+      "valence_cont": 1.9284,
+      "energy_cont": 1.2486
+    },
+    {
+      "date": "2026-06-23",
+      "valence_cont": 2.5499,
+      "energy_cont": 1.797
+    },
+    {
+      "date": "2026-06-24",
+      "valence_cont": 1.9796,
+      "energy_cont": 0.8759
+    },
+    {
+      "date": "2026-06-25",
+      "valence_cont": 1.3493,
+      "energy_cont": -0.0152
+    },
+    {
+      "date": "2026-06-26",
+      "valence_cont": 2.4596,
+      "energy_cont": 0.9388
+    },
+    {
+      "date": "2026-06-27",
+      "valence_cont": 1.7171,
+      "energy_cont": 0.068
+    },
+    {
+      "date": "2026-06-28",
+      "valence_cont": 2.3469,
+      "energy_cont": 1.3156
+    },
+    {
+      "date": "2026-06-29",
+      "valence_cont": 1.5915,
+      "energy_cont": 0.5193
+    },
+    {
+      "date": "2026-06-30",
+      "valence_cont": 1.5376,
+      "energy_cont": 0.8113
+    },
+    {
+      "date": "2026-07-01",
+      "valence_cont": 3.7366,
+      "energy_cont": 2.3368
+    },
+    {
+      "date": "2026-07-02",
+      "valence_cont": 3.122,
+      "energy_cont": 2.2555
+    },
+    {
+      "date": "2026-07-03",
+      "valence_cont": 3.7064,
+      "energy_cont": 2.347
+    },
+    {
+      "date": "2026-07-04",
+      "valence_cont": 2.9417,
+      "energy_cont": 1.8398
+    },
+    {
+      "date": "2026-07-05",
+      "valence_cont": 3.3952,
+      "energy_cont": 1.8426
+    },
+    {
+      "date": "2026-07-06",
+      "valence_cont": 4.1147,
+      "energy_cont": 3.0889
+    },
+    {
+      "date": "2026-07-07",
+      "valence_cont": 2.307,
+      "energy_cont": 0.5206
+    },
+    {
+      "date": "2026-07-08",
+      "valence_cont": 3.8527,
+      "energy_cont": 2.337
+    },
+    {
+      "date": "2026-07-09",
+      "valence_cont": 3.8767,
+      "energy_cont": 1.155
+    },
+    {
+      "date": "2026-07-10",
+      "valence_cont": 3.5402,
+      "energy_cont": 1.9216
+    },
+    {
+      "date": "2026-07-11",
+      "valence_cont": 4.3523,
+      "energy_cont": 2.9165
+    },
+    {
+      "date": "2026-07-12",
+      "valence_cont": 4.0079,
+      "energy_cont": 2.8929
+    },
+    {
+      "date": "2026-07-13",
+      "valence_cont": 3.058,
+      "energy_cont": 1.7817
+    },
+    {
+      "date": "2026-07-14",
+      "valence_cont": 3.4415,
+      "energy_cont": 2.8269
+    },
+    {
+      "date": "2026-07-15",
+      "valence_cont": 4.0093,
+      "energy_cont": 1.9123
+    },
+    {
+      "date": "2026-07-16",
+      "valence_cont": 3.2809,
+      "energy_cont": 1.4468
+    },
+    {
+      "date": "2026-07-17",
+      "valence_cont": 4.0286,
+      "energy_cont": 2.7003
+    },
+    {
+      "date": "2026-07-18",
+      "valence_cont": 4.1627,
+      "energy_cont": 2.8032
+    },
+    {
+      "date": "2026-07-19",
+      "valence_cont": 2.5126,
+      "energy_cont": 1.0083
+    },
+    {
+      "date": "2026-07-20",
+      "valence_cont": 4.07,
+      "energy_cont": 2.076
+    },
+    {
+      "date": "2026-07-21",
+      "valence_cont": 3.8457,
+      "energy_cont": 2.2629
+    },
+    {
+      "date": "2026-07-22",
+      "valence_cont": 4.2581,
+      "energy_cont": 2.6945
+    },
+    {
+      "date": "2026-07-23",
+      "valence_cont": 2.1512,
+      "energy_cont": 0.2728
+    },
+    {
+      "date": "2026-07-24",
+      "valence_cont": 3.9965,
+      "energy_cont": 2.787
+    },
+    {
+      "date": "2026-07-25",
+      "valence_cont": 4.9001,
+      "energy_cont": 3.3163
+    },
+    {
+      "date": "2026-07-26",
+      "valence_cont": 4.5631,
+      "energy_cont": 2.7011
+    },
+    {
+      "date": "2026-07-27",
+      "valence_cont": 4.765,
+      "energy_cont": 3.161
+    },
+    {
+      "date": "2026-07-28",
+      "valence_cont": 3.3305,
+      "energy_cont": 1.4875
+    },
+    {
+      "date": "2026-07-29",
+      "valence_cont": 4.3918,
+      "energy_cont": 3.1075
+    },
+    {
+      "date": "2026-07-30",
+      "valence_cont": 2.8795,
+      "energy_cont": 1.0887
+    },
+    {
+      "date": "2026-07-31",
+      "valence_cont": 4.7685,
+      "energy_cont": 3.8175
+    },
+    {
+      "date": "2026-08-01",
+      "valence_cont": 5.0411,
+      "energy_cont": 3.8499
+    },
+    {
+      "date": "2026-08-02",
+      "valence_cont": 3.463,
+      "energy_cont": 2.5613
+    },
+    {
+      "date": "2026-08-03",
+      "valence_cont": 2.9397,
+      "energy_cont": 0.8859
+    },
+    {
+      "date": "2026-08-04",
+      "valence_cont": 4.1021,
+      "energy_cont": 2.3118
+    },
+    {
+      "date": "2026-08-05",
+      "valence_cont": 3.4508,
+      "energy_cont": 1.7802
+    },
+    {
+      "date": "2026-08-06",
+      "valence_cont": 2.9359,
+      "energy_cont": 1.6286
+    },
+    {
+      "date": "2026-08-07",
+      "valence_cont": 3.6131,
+      "energy_cont": 3.231
+    },
+    {
+      "date": "2026-08-08",
+      "valence_cont": 4.076,
+      "energy_cont": 3.4984
+    },
+    {
+      "date": "2026-08-09",
+      "valence_cont": 3.9401,
+      "energy_cont": 2.4706
+    },
+    {
+      "date": "2026-08-10",
+      "valence_cont": 3.3736,
+      "energy_cont": 1.9915
+    },
+    {
+      "date": "2026-08-11",
+      "valence_cont": 4.1526,
+      "energy_cont": 3.6256
+    },
+    {
+      "date": "2026-08-12",
+      "valence_cont": 3.7738,
+      "energy_cont": 2.7009
+    },
+    {
+      "date": "2026-08-13",
+      "valence_cont": 3.0933,
+      "energy_cont": 1.1152
+    },
+    {
+      "date": "2026-08-14",
+      "valence_cont": 4.3389,
+      "energy_cont": 2.3832
+    },
+    {
+      "date": "2026-08-15",
+      "valence_cont": 3.6528,
+      "energy_cont": 1.7762
+    },
+    {
+      "date": "2026-08-16",
+      "valence_cont": 3.3338,
+      "energy_cont": 1.727
+    },
+    {
+      "date": "2026-08-17",
+      "valence_cont": 3.8747,
+      "energy_cont": 2.7317
+    },
+    {
+      "date": "2026-08-18",
+      "valence_cont": 4.0926,
+      "energy_cont": 2.6676
+    },
+    {
+      "date": "2026-08-19",
+      "valence_cont": 4.0566,
+      "energy_cont": 2.705
+    },
+    {
+      "date": "2026-08-20",
+      "valence_cont": 4.1846,
+      "energy_cont": 2.5467
+    },
+    {
+      "date": "2026-08-21",
+      "valence_cont": 3.6716,
+      "energy_cont": 2.5816
+    },
+    {
+      "date": "2026-08-22",
+      "valence_cont": 3.3579,
+      "energy_cont": 2.0952
+    },
+    {
+      "date": "2026-08-23",
+      "valence_cont": 2.6901,
+      "energy_cont": 1.3301
+    },
+    {
+      "date": "2026-08-24",
+      "valence_cont": 2.7323,
+      "energy_cont": 0.0213
+    },
+    {
+      "date": "2026-08-25",
+      "valence_cont": 2.8292,
+      "energy_cont": 1.9083
+    },
+    {
+      "date": "2026-08-26",
+      "valence_cont": 2.9324,
+      "energy_cont": 1.5691
+    },
+    {
+      "date": "2026-08-27",
+      "valence_cont": 3.6826,
+      "energy_cont": 2.2507
+    },
+    {
+      "date": "2026-08-28",
+      "valence_cont": 3.463,
+      "energy_cont": 1.7516
+    },
+    {
+      "date": "2026-08-29",
+      "valence_cont": 4.3223,
+      "energy_cont": 3.2965
+    },
+    {
+      "date": "2026-08-30",
+      "valence_cont": 3.3604,
+      "energy_cont": 1.2519
+    },
+    {
+      "date": "2026-08-31",
+      "valence_cont": 3.5705,
+      "energy_cont": 2.1997
+    },
+    {
+      "date": "2026-09-01",
+      "valence_cont": 4.0238,
+      "energy_cont": 2.4572
+    },
+    {
+      "date": "2026-09-02",
+      "valence_cont": 2.9128,
+      "energy_cont": 1.9584
+    },
+    {
+      "date": "2026-09-03",
+      "valence_cont": 2.5007,
+      "energy_cont": 0.111
+    },
+    {
+      "date": "2026-09-04",
+      "valence_cont": 2.9162,
+      "energy_cont": 1.6591
+    },
+    {
+      "date": "2026-09-05",
+      "valence_cont": 4.0545,
+      "energy_cont": 2.4608
+    },
+    {
+      "date": "2026-09-06",
+      "valence_cont": 4.1365,
+      "energy_cont": 1.8309
+    },
+    {
+      "date": "2026-09-07",
+      "valence_cont": 3.5149,
+      "energy_cont": 2.1769
+    },
+    {
+      "date": "2026-09-08",
+      "valence_cont": 3.7386,
+      "energy_cont": 2.3064
+    },
+    {
+      "date": "2026-09-09",
+      "valence_cont": 3.0151,
+      "energy_cont": 1.9945
+    },
+    {
+      "date": "2026-09-10",
+      "valence_cont": 4.1272,
+      "energy_cont": 2.0164
+    },
+    {
+      "date": "2026-09-11",
+      "valence_cont": 3.0772,
+      "energy_cont": 2.2316
+    },
+    {
+      "date": "2026-09-12",
+      "valence_cont": 2.4481,
+      "energy_cont": 0.4956
+    },
+    {
+      "date": "2026-09-13",
+      "valence_cont": 4.6572,
+      "energy_cont": 2.8954
+    },
+    {
+      "date": "2026-09-14",
+      "valence_cont": 3.3575,
+      "energy_cont": 1.9345
+    },
+    {
+      "date": "2026-09-15",
+      "valence_cont": 2.951,
+      "energy_cont": 2.0257
+    },
+    {
+      "date": "2026-09-16",
+      "valence_cont": 3.2606,
+      "energy_cont": 2.2598
+    },
+    {
+      "date": "2026-09-17",
+      "valence_cont": 3.2109,
+      "energy_cont": 2.1801
+    },
+    {
+      "date": "2026-09-18",
+      "valence_cont": 1.629,
+      "energy_cont": 0.3058
+    },
+    {
+      "date": "2026-09-19",
+      "valence_cont": 3.6546,
+      "energy_cont": 2.9517
+    },
+    {
+      "date": "2026-09-20",
+      "valence_cont": 2.9683,
+      "energy_cont": 1.5941
+    },
+    {
+      "date": "2026-09-21",
+      "valence_cont": 3.6175,
+      "energy_cont": 2.306
+    },
+    {
+      "date": "2026-09-22",
+      "valence_cont": 2.5746,
+      "energy_cont": 1.6025
+    },
+    {
+      "date": "2026-09-23",
+      "valence_cont": 1.5707,
+      "energy_cont": 0.1055
+    },
+    {
+      "date": "2026-09-24",
+      "valence_cont": 2.9208,
+      "energy_cont": 1.8955
+    },
+    {
+      "date": "2026-09-25",
+      "valence_cont": 3.7644,
+      "energy_cont": 2.7618
+    },
+    {
+      "date": "2026-09-26",
+      "valence_cont": 4.2392,
+      "energy_cont": 3.3765
+    },
+    {
+      "date": "2026-09-27",
+      "valence_cont": 2.9149,
+      "energy_cont": 1.9134
+    },
+    {
+      "date": "2026-09-28",
+      "valence_cont": 2.4752,
+      "energy_cont": 1.9334
+    },
+    {
+      "date": "2026-09-29",
+      "valence_cont": 3.1279,
+      "energy_cont": 1.5816
+    },
+    {
+      "date": "2026-09-30",
+      "valence_cont": 2.0141,
+      "energy_cont": 0.7685
+    },
+    {
+      "date": "2026-10-01",
+      "valence_cont": 3.4598,
+      "energy_cont": 2.1205
+    },
+    {
+      "date": "2026-10-02",
+      "valence_cont": 2.8979,
+      "energy_cont": 2.0429
+    },
+    {
+      "date": "2026-10-03",
+      "valence_cont": 4.0222,
+      "energy_cont": 2.8161
+    },
+    {
+      "date": "2026-10-04",
+      "valence_cont": 3.4811,
+      "energy_cont": 2.1638
+    },
+    {
+      "date": "2026-10-05",
+      "valence_cont": 2.0901,
+      "energy_cont": 0.8288
+    },
+    {
+      "date": "2026-10-06",
+      "valence_cont": 3.2501,
+      "energy_cont": 1.2658
+    },
+    {
+      "date": "2026-10-07",
+      "valence_cont": 3.6428,
+      "energy_cont": 2.0756
+    },
+    {
+      "date": "2026-10-08",
+      "valence_cont": 3.6634,
+      "energy_cont": 2.2716
+    },
+    {
+      "date": "2026-10-09",
+      "valence_cont": 3.9889,
+      "energy_cont": 2.5474
+    },
+    {
+      "date": "2026-10-10",
+      "valence_cont": 4.6929,
+      "energy_cont": 1.6854
+    },
+    {
+      "date": "2026-10-11",
+      "valence_cont": 3.9287,
+      "energy_cont": 1.9772
+    },
+    {
+      "date": "2026-10-12",
+      "valence_cont": 2.8513,
+      "energy_cont": 1.5884
+    },
+    {
+      "date": "2026-10-13",
+      "valence_cont": 4.1492,
+      "energy_cont": 1.8003
+    },
+    {
+      "date": "2026-10-14",
+      "valence_cont": 3.0515,
+      "energy_cont": 1.6342
+    },
+    {
+      "date": "2026-10-15",
+      "valence_cont": 3.4038,
+      "energy_cont": 2.2836
+    },
+    {
+      "date": "2026-10-16",
+      "valence_cont": 3.588,
+      "energy_cont": 2.2469
+    },
+    {
+      "date": "2026-10-17",
+      "valence_cont": 2.4703,
+      "energy_cont": 0.9848
+    },
+    {
+      "date": "2026-10-18",
+      "valence_cont": 3.6856,
+      "energy_cont": 2.2022
+    },
+    {
+      "date": "2026-10-19",
+      "valence_cont": 3.3347,
+      "energy_cont": 2.7447
+    },
+    {
+      "date": "2026-10-20",
+      "valence_cont": 1.4218,
+      "energy_cont": 0.4763
+    },
+    {
+      "date": "2026-10-21",
+      "valence_cont": 3.4424,
+      "energy_cont": 2.3691
+    },
+    {
+      "date": "2026-10-22",
+      "valence_cont": 2.9006,
+      "energy_cont": 2.2871
+    },
+    {
+      "date": "2026-10-23",
+      "valence_cont": 3.9127,
+      "energy_cont": 2.5878
+    },
+    {
+      "date": "2026-10-24",
+      "valence_cont": 2.0221,
+      "energy_cont": 0.5761
+    },
+    {
+      "date": "2026-10-25",
+      "valence_cont": 3.4643,
+      "energy_cont": 2.7681
+    },
+    {
+      "date": "2026-10-26",
+      "valence_cont": 3.2346,
+      "energy_cont": 2.1015
+    },
+    {
+      "date": "2026-10-27",
+      "valence_cont": 3.2567,
+      "energy_cont": 1.6068
+    },
+    {
+      "date": "2026-10-28",
+      "valence_cont": 3.7108,
+      "energy_cont": 2.6842
+    },
+    {
+      "date": "2026-10-29",
+      "valence_cont": 4.7588,
+      "energy_cont": 2.8313
+    },
+    {
+      "date": "2026-10-30",
+      "valence_cont": 2.0707,
+      "energy_cont": 0.0179
+    },
+    {
+      "date": "2026-10-31",
+      "valence_cont": 2.7365,
+      "energy_cont": 0.8526
+    }
+  ]
+}
