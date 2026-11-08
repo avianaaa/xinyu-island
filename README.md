@@ -129,20 +129,26 @@ analysis/
 # 方式一：直接双击 index.html（就是为了这个才不用 ES module）
 
 # 方式二：起个静态服务，推荐
-python -m http.server 8899
-# 打开 http://localhost:8899/
+npm run serve     # 零依赖，用 Node 内置 http，地址 http://127.0.0.1:8778
+# 手边有 Python 也可以用：python -m http.server 8899
 ```
 
 ## 测试
 
 ```bash
-node test/logic.test.js          # 40 项，不需要浏览器
-
-python -m http.server 8778       # 另开一个终端
-NODE_PATH=./node_modules node test/smoke.test.js   # 65 项，需要 jsdom
+npm install       # 唯一直接依赖是 jsdom（需要 Node ≥ 22.22）
+npm run verify    # 一条命令跑完 105 项：逻辑 40 + 冒烟 65
 ```
 
-冒烟测试要连本地服务是因为它用 jsdom 从 `http://` 加载真实页面，走一遍点物件 → 填表 → 提交 → 看分析 → 导出的完整链路。端口可用 `XINYU_PORT` 覆盖。
+也可以拆开跑：
+
+```bash
+npm test           # 40 项，纯 node，不需要浏览器和网络
+npm run serve      # 起服务，另开一个终端
+npm run test:smoke # 65 项，jsdom 从 http:// 加载真实页面
+```
+
+冒烟测试要连本地服务是因为它用 jsdom 从 `http://` 加载真实页面，走一遍点物件 → 填表 → 提交 → 看分析 → 导出的完整链路。端口可用 `XINYU_PORT` 覆盖，`npm run verify` 会自己起服务、跑完关掉。
 
 当前 **105 项全过**。
 
